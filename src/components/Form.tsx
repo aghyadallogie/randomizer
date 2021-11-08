@@ -1,8 +1,21 @@
 import React, { ChangeEvent, FormEvent, FC, useState } from "react";
-import { IState } from "../Interfaces";
+import { useDispatch, useSelector } from "react-redux";
+import { IItem } from "../Interfaces";
+import {
+  addItemAction,
+  setTargetAction,
+  selectItems,
+  clearItemsAction,
+  removeItemAction,
+  selectTarget,
+} from "../store";
 
-export const Form: FC<IState> = ({ items, setItems, setTarget, target }) => {
+export const Form: FC = () => {
   const [input, setInput] = useState("");
+  const items = useSelector(selectItems);
+  const target = useSelector(selectTarget);
+
+  const dispatch = useDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setInput(e.target.value);
@@ -11,22 +24,24 @@ export const Form: FC<IState> = ({ items, setItems, setTarget, target }) => {
   const handleClick = (e: FormEvent): void => {
     e.preventDefault();
     if (!input) return;
-    setItems([...items, { item: input, id: Math.random() }]);
+    dispatch(addItemAction(input));
     setInput("");
   };
 
+  //////
   const rndSelect = (e: FormEvent): void => {
     e.preventDefault();
 
     if (items.length > 1) {
-      let target = items[Math.floor(Math.random() * items.length)];
-      setTarget(target.id);
+      const filtered = [...items].filter((ele) => ele.finished === false);
+      let rnd = filtered[Math.floor(Math.random() * filtered.length)];
+      console.log(target);
+      
+      
+      dispatch(setTargetAction(rnd.id));
+      dispatch(removeItemAction(target));
     } else {
-      setItems([]);
-    }
-
-    if (items.find((el) => el.id === target)) {
-      setItems((prev) => prev.filter((el) => el.id !== target));
+      dispatch(clearItemsAction());
     }
   };
 
@@ -42,11 +57,7 @@ export const Form: FC<IState> = ({ items, setItems, setTarget, target }) => {
         />
       </div>
       <div className="btns">
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={handleClick}
-        >
+        <button type="submit" className="btn btn-primary" onClick={handleClick}>
           Add Item
         </button>
         <button className="btn btn-danger" onClick={rndSelect}>

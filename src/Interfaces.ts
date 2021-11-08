@@ -1,18 +1,14 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { store } from "./store";
 
 export interface IItem {
   item: string;
   id: number;
+  finished: boolean;
 }
 
 export interface IProps {
   items: IItem[];
-  target: number
-}
-
-export interface IState {
-  items: IItem[];
   target: number;
-  setItems: Dispatch<SetStateAction<IItem[]>>;
-  setTarget: Dispatch<SetStateAction<number>>;
+  finished: boolean
 }
