@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FormEvent, FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IItem } from "../Interfaces";
 import {
   addItemAction,
   setTargetAction,
@@ -28,16 +27,13 @@ export const Form: FC = () => {
     setInput("");
   };
 
-  //////
   const rndSelect = (e: FormEvent): void => {
     e.preventDefault();
 
-    if (items.length > 1) {
-      const filtered = [...items].filter((ele) => ele.finished === false);
-      let rnd = filtered[Math.floor(Math.random() * filtered.length)];
-      console.log(target);
-      
-      
+    const filtered = items.filter((ele) => ele.finished === false);
+    let rnd = filtered[Math.floor(Math.random() * filtered.length)];
+
+    if (filtered.length >= 1) {
       dispatch(setTargetAction(rnd.id));
       dispatch(removeItemAction(target));
     } else {

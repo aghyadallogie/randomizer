@@ -1,6 +1,3 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { store } from "./store";
-
 export interface IItem {
   item: string;
   id: number;
@@ -10,5 +7,5 @@ export interface IItem {
 export interface IProps {
   items: IItem[];
   target: number;
-  finished: boolean
+  finished: boolean;
 }

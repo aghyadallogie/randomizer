@@ -4,7 +4,6 @@ import { IItem } from "../Interfaces";
 import { selectItems, selectTarget } from "../store";
 
 export const List: FC = () => {
-
   const items = useSelector(selectItems);
   const target = useSelector(selectTarget);
 
@@ -14,7 +13,11 @@ export const List: FC = () => {
         key={item.id}
         className="list-group-item"
         style={
-          item.id === target ? { color: "red", background: "whitesmoke" } : item.finished ? {color: "white", background: "grey"} : {}
+          item.id === target
+            ? { color: "red", background: "whitesmoke" }
+            : item.finished
+            ? { color: "white", background: "grey" }
+            : {}
         }
       >
         {item.item}
