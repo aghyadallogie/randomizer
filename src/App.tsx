@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { Form } from "./components/Form";
+import { List } from "./components/List";
+import { IItem } from "./Interfaces";
 
-function App() {
+const App: FC = () => {
+  const [items, setItems] = useState<IItem[]>([]);
+  const [target, setTarget] = useState<number>(1000);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container d-flex justify-content-around mt-5">
+      <Form items={items} setItems={setItems} target={target} setTarget={setTarget} />
+      <List items={items} target={target} />
     </div>
   );
-}
+};
 
 export default App;

@@ -3,8 +3,24 @@
 }
 
 .App-logo {
-  height: 40vmin;
   pointer-events: none;
+}
+
+.form-group {
+  width: 100%;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+}
+
+li {
+  text-align: center;
+  width: 30%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
