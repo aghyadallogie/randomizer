@@ -9,3 +9,8 @@ export interface IProps {
   target: number;
   finished: boolean;
 }
+
+export interface ItemsSliceState {
+  items: IItem[];
+  target: number;
+}

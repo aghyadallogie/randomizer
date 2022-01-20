@@ -14,9 +14,9 @@ export const List: FC = () => {
         className="list-group-item"
         style={
           item.id === target
-            ? { color: "red", background: "whitesmoke" }
+            ? { color: "red", background: "lightgray" }
             : item.finished
-            ? { color: "white", background: "grey" }
+            ? { color: "white", background: "whitesmoke" }
             : {}
         }
       >

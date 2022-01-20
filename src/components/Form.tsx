@@ -29,16 +29,17 @@ export const Form: FC = () => {
 
   const rndSelect = (e: FormEvent): void => {
     e.preventDefault();
+    const filtered = items.filter((student) => student.finished === false);
+    const availableIDs = filtered.map((item) => item.id);
+    console.log(availableIDs);
 
-    const filtered = items.filter((ele) => ele.finished === false);
-    let rnd = filtered[Math.floor(Math.random() * filtered.length)];
+    let mint = setInterval(() => {
+      const randomID = availableIDs[Math.floor(Math.random() * availableIDs.length)];
+      dispatch(setTargetAction(randomID));
+    }, 150);
+    setTimeout(() => clearInterval(mint), 2000);
 
-    if (filtered.length >= 1) {
-      dispatch(setTargetAction(rnd.id));
-      dispatch(removeItemAction(target));
-    } else {
-      dispatch(clearItemsAction());
-    }
+    dispatch(removeItemAction(target));
   };
 
   return (

@@ -1,10 +1,5 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IItem } from "./Interfaces";
-
-interface ItemsSliceState {
-  items: IItem[];
-  target: number;
-}
+import { ItemsSliceState } from "./Interfaces";
 
 const initialState: ItemsSliceState = {
   items: [
@@ -25,7 +20,7 @@ const initialState: ItemsSliceState = {
     { item: "Stani", id: 15, finished: false },
     { item: "Wadim", id: 16, finished: false },
   ],
-  target: 1000,
+  target: 0,
 };
 
 export const itemSlice = createSlice({
